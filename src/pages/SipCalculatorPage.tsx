@@ -3,11 +3,28 @@ import { calculateSip } from "../calculators/sip";
 import SipPieChart from "../components/SipPieChart";
 import { formatCurrency } from "../utils/formatCurrency";
 import { Helmet } from "react-helmet-async";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function SipCalculatorPage() {
-  const [amount, setAmount] = useState(15000);
-  const [rate, setRate] = useState(12);
-  const [years, setYears] = useState(15);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [copied, setCopied] = useState(false);
+
+  const [amount, setAmount] = useState(
+    Number(searchParams.get("amount")) || 10000,
+  );
+
+  const [rate, setRate] = useState(Number(searchParams.get("rate")) || 12);
+
+  const [years, setYears] = useState(Number(searchParams.get("years")) || 10);
+
+  useEffect(() => {
+    setSearchParams({
+      amount: amount.toString(),
+      rate: rate.toString(),
+      years: years.toString(),
+    });
+  }, [amount, rate, years, setSearchParams]);
 
   const result = calculateSip(amount, rate, years);
 
@@ -40,40 +57,80 @@ export default function SipCalculatorPage() {
 
             <div className="mb-6">
               <label className="block mb-2 font-medium">
-                Monthly Investment (₹)
+                Monthly Investment
               </label>
+              <div className="flex justify-between items-center mb-2">
+                <div className="text-lg font-semibold mb-2">
+                  ₹{amount.toLocaleString("en-IN")}
+                </div>
+
+                <input
+                  type="number"
+                  value={amount}
+                  onChange={(e) => setAmount(Number(e.target.value))}
+                  className="w-32 border rounded-lg px-3 py-2"
+                />
+              </div>
 
               <input
-                type="number"
+                type="range"
+                min="500"
+                max="150000"
+                step="500"
                 value={amount}
                 onChange={(e) => setAmount(Number(e.target.value))}
-                className="w-full border rounded-lg px-4 py-2"
+                className="w-full cursor-pointer"
+              />
+            </div>
+
+            <div className="mb-6">
+              <label className="block mb-2 font-medium">Expected Return</label>
+              <div className="flex justify-between items-center mb-2">
+                <div className="text-lg font-semibold mb-2">{rate}%</div>
+
+                <input
+                  type="number"
+                  value={rate}
+                  onChange={(e) => setRate(Number(e.target.value))}
+                  className="w-32 border rounded-lg px-3 py-2"
+                />
+              </div>
+
+              <input
+                type="range"
+                min="1"
+                max="30"
+                step="0.5"
+                value={rate}
+                onChange={(e) => setRate(Number(e.target.value))}
+                className="w-full cursor-pointer"
               />
             </div>
 
             <div className="mb-6">
               <label className="block mb-2 font-medium">
-                Expected Return (%)
+                Investment Period
               </label>
 
-              <input
-                type="number"
-                value={rate}
-                onChange={(e) => setRate(Number(e.target.value))}
-                className="w-full border rounded-lg px-4 py-2"
-              />
-            </div>
+              <div className="flex justify-between items-center mb-2">
+                <div className="text-lg font-semibold mb-2">{years} Years</div>
 
-            <div>
-              <label className="block mb-2 font-medium">
-                Investment Period (Years)
-              </label>
+                <input
+                  type="number"
+                  value={years}
+                  onChange={(e) => setYears(Number(e.target.value))}
+                  className="w-32 border rounded-lg px-3 py-2"
+                />
+              </div>
 
               <input
-                type="number"
+                type="range"
+                min="1"
+                max="40"
+                step="1"
                 value={years}
                 onChange={(e) => setYears(Number(e.target.value))}
-                className="w-full border rounded-lg px-4 py-2"
+                className="w-full cursor-pointer"
               />
             </div>
           </div>
@@ -107,6 +164,20 @@ export default function SipCalculatorPage() {
                   {formatCurrency(result.maturityValue)}
                 </p>
               </div>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.href);
+
+                  setCopied(true);
+
+                  setTimeout(() => {
+                    setCopied(false);
+                  }, 2000);
+                }}
+                className="mt-6 bg-blue-600 text-white px-4 py-2 rounded-lg"
+              >
+                {copied ? "Copied!" : "Copy Share Link"}
+              </button>
             </div>
           </div>
         </div>
