@@ -111,6 +111,41 @@ export default function SipCalculatorPage() {
           disciplined investing and the power of compounding over the long term.
         </p>
       </section>
+
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+
+        <div className="space-y-6">
+          <div>
+            <h3 className="font-semibold text-lg">What is SIP?</h3>
+
+            <p className="text-gray-600">
+              SIP stands for Systematic Investment Plan. It allows you to invest
+              a fixed amount regularly in mutual funds.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-lg">Is SIP better than FD?</h3>
+
+            <p className="text-gray-600">
+              SIPs generally offer higher long-term growth potential, while FDs
+              provide fixed and predictable returns.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-lg">
+              How much should I invest in SIP?
+            </h3>
+
+            <p className="text-gray-600">
+              The amount depends on your goals, risk tolerance and investment
+              horizon.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
