@@ -1,17 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Layout from "./components/Layout";
+
 import HomePage from "./pages/HomePage";
-import SipCalculatorPage from "./pages/SipCalculatorPage";
+import CalculatorsPage from "./pages/CalculatorsPage";
 import BlogPage from "./pages/BlogPage";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/sip-calculator" element={<SipCalculatorPage />} />
-        <Route path="/blog" element={<BlogPage />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/calculators" element={<CalculatorsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 }
