@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { calculateSip } from "../calculators/sip";
+import SipPieChart from "../components/SipPieChart";
+import { formatCurrency } from "../utils/formatCurrency";
 
 export default function SipCalculatorPage() {
-  const [amount, setAmount] = useState(10000);
+  const [amount, setAmount] = useState(15000);
   const [rate, setRate] = useState(12);
-  const [years, setYears] = useState(20);
+  const [years, setYears] = useState(15);
 
   const result = calculateSip(amount, rate, years);
 
@@ -68,7 +70,7 @@ export default function SipCalculatorPage() {
               <p className="text-gray-500">Invested Amount</p>
 
               <p className="text-2xl font-bold">
-                ₹{Math.round(result.investedAmount).toLocaleString()}
+                {formatCurrency(result.investedAmount)}
               </p>
             </div>
 
@@ -76,7 +78,7 @@ export default function SipCalculatorPage() {
               <p className="text-gray-500">Estimated Returns</p>
 
               <p className="text-2xl font-bold text-green-600">
-                ₹{Math.round(result.estimatedReturns).toLocaleString()}
+                {formatCurrency(result.estimatedReturns)}
               </p>
             </div>
 
@@ -84,12 +86,31 @@ export default function SipCalculatorPage() {
               <p className="text-gray-500">Maturity Value</p>
 
               <p className="text-3xl font-bold text-blue-600">
-                ₹{Math.round(result.maturityValue).toLocaleString()}
+                {formatCurrency(result.maturityValue)}
               </p>
             </div>
           </div>
         </div>
       </div>
+
+      <div className="mt-12 border rounded-xl p-6 shadow-sm">
+        <h2 className="text-2xl font-semibold mb-6">Investment Breakdown</h2>
+
+        <SipPieChart
+          investedAmount={result.investedAmount}
+          estimatedReturns={result.estimatedReturns}
+        />
+      </div>
+
+      <section className="mt-12">
+        <h2 className="text-2xl font-bold mb-4">What is a SIP?</h2>
+
+        <p className="text-gray-600 leading-7">
+          A Systematic Investment Plan (SIP) allows investors to invest a fixed
+          amount regularly into mutual funds. SIPs help build wealth through
+          disciplined investing and the power of compounding over the long term.
+        </p>
+      </section>
     </div>
   );
 }
