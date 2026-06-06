@@ -1,84 +1,84 @@
+import { Link } from "react-router-dom";
 import CalculatorCard from "../components/CalculatorCard";
 
 export default function HomePage() {
   return (
     <div>
-      {
-        <button
-          style={{
-            padding: "12px 24px",
-            marginTop: "20px",
-            cursor: "pointer",
-          }}
+      {/* HERO */}
+
+      <section className="text-center py-20">
+        <h1 className="text-5xl font-bold mb-6">Financial Calculators</h1>
+
+        <p className="text-xl text-gray-600 mb-8">
+          Plan your investments, savings, loans and retirement with ease.
+        </p>
+
+        <Link
+          to="/calculators"
+          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
         >
           Explore Calculators
-        </button>
-      }
-
-      <section
-        style={{
-          textAlign: "center",
-          padding: "60px 20px",
-        }}
-      >
-        <h1>Finance Calculators</h1>
-
-        <p>Calculate SIP, FD, EMI, CAGR and plan your financial future.</p>
+        </Link>
       </section>
 
-      {/* Calculator Cards */}
+      {/* CALCULATORS */}
 
       <section>
-        <h2>Popular Calculators</h2>
+        <h2 className="text-3xl font-bold mb-8">Popular Calculators</h2>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-            gap: "20px",
-          }}
-        >
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <CalculatorCard
             title="SIP Calculator"
-            description="Estimate wealth from monthly SIP investments."
+            description="Calculate future value of SIP investments."
             path="/sip-calculator"
           />
 
           <CalculatorCard
             title="FD Calculator"
-            description="Calculate fixed deposit maturity amount."
+            description="Estimate fixed deposit maturity amount."
             path="/"
           />
 
           <CalculatorCard
             title="EMI Calculator"
-            description="Know your monthly loan EMI."
+            description="Know your monthly loan repayments."
             path="/"
           />
 
           <CalculatorCard
             title="CAGR Calculator"
-            description="Measure annualized investment returns."
+            description="Measure annualized investment growth."
             path="/"
           />
         </div>
       </section>
 
-      {/* Benefits */}
+      {/* BENEFITS */}
 
-      <section
-        style={{
-          marginTop: "60px",
-        }}
-      >
-        <h2>Why Use Our Calculators?</h2>
+      <section className="mt-20">
+        <h2 className="text-3xl font-bold mb-8">Why Choose CalcWise?</h2>
 
-        <ul>
-          <li>Instant Results</li>
-          <li>Accurate Formulas</li>
-          <li>Free Forever</li>
-          <li>Mobile Friendly</li>
-        </ul>
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="p-6 border rounded-xl">
+            <h3 className="font-semibold text-lg mb-2">Instant Results</h3>
+
+            <p className="text-gray-600">Get answers immediately.</p>
+          </div>
+
+          <div className="p-6 border rounded-xl">
+            <h3 className="font-semibold text-lg mb-2">
+              Accurate Calculations
+            </h3>
+
+            <p className="text-gray-600">Trusted financial formulas.</p>
+          </div>
+
+          <div className="p-6 border rounded-xl">
+            <h3 className="font-semibold text-lg mb-2">Free Forever</h3>
+
+            <p className="text-gray-600">No signup required.</p>
+          </div>
+        </div>
       </section>
     </div>
   );
