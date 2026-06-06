@@ -11,5 +11,13 @@ export function calculateSip(
     (((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) *
       (1 + monthlyRate));
 
-  return Math.round(maturity);
+  const investedAmount = monthlyInvestment * months;
+
+  const estimatedReturns = maturity - investedAmount;
+
+  return {
+    investedAmount,
+    estimatedReturns,
+    maturityValue: maturity,
+  };
 }
