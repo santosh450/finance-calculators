@@ -48,7 +48,7 @@ export default function HomePage() {
           <CalculatorCard
             title="EMI Calculator"
             description="Know your monthly loan repayments."
-            path="/"
+            path="/emi-calculator"
           />
 
           <CalculatorCard
