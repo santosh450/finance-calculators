@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SipPieChart from "../components/SipPieChart";
+import BreakdownPieChart from "../components/BreakdownPieChart";
 import { formatCurrency } from "../utils/formatCurrency";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
@@ -173,7 +173,7 @@ export default function EmiCalculatorPage() {
         <div className="mt-12 border rounded-xl p-6 shadow-sm">
           <h2 className="text-2xl font-semibold mb-6">Investment Breakdown</h2>
 
-          <SipPieChart
+          <BreakdownPieChart
             investedAmount={loanAmount}
             estimatedReturns={result.totalInterest}
           />

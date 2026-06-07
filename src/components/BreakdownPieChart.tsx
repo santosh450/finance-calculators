@@ -6,7 +6,7 @@ interface Props {
   estimatedReturns: number;
 }
 
-export default function SipPieChart({
+export default function BreakdownPieChart({
   investedAmount,
   estimatedReturns,
 }: Props) {
