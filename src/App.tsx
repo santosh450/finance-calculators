@@ -10,6 +10,7 @@ import SipCalculatorPage from "./pages/SipCalculatorPage";
 import LumpsumCalculatorPage from "./pages/LumpsumCalculatorPage";
 import FdCalculatorPage from "./pages/FdCalculatorPage";
 import EmiCalculatorPage from "./pages/EmiCalculatorPage";
+import CagrCalculatorPage from "./pages/CagrCalculatorPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/sip-calculator" element={<SipCalculatorPage />} />
           <Route path="/fd-calculator" element={<FdCalculatorPage />} />
           <Route path="/emi-calculator" element={<EmiCalculatorPage />} />
+          <Route path="/cagr-calculator" element={<CagrCalculatorPage />} />
           <Route
             path="/lumpsum-calculator"
             element={<LumpsumCalculatorPage />}

@@ -30,4 +30,10 @@ export const calculators = [
     path: "/fd-calculator",
     icon: Landmark,
   },
+  {
+    title: "CAGR Calculator",
+    description: "Calculate compound annual growth rate.",
+    path: "/cagr-calculator",
+    icon: TrendingUp,
+  },
 ];
