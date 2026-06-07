@@ -42,7 +42,7 @@ export default function HomePage() {
           <CalculatorCard
             title="FD Calculator"
             description="Estimate fixed deposit maturity amount."
-            path="/"
+            path="/fd-calculator"
           />
 
           <CalculatorCard

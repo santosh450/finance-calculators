@@ -38,14 +38,6 @@ export default function SipCalculatorPage() {
           content="Free SIP Calculator. Calculate your mutual fund SIP returns and future wealth instantly."
         />
       </Helmet>
-      <Helmet>
-        <title>SIP Calculator - Calculate SIP Returns Online</title>
-
-        <meta
-          name="description"
-          content="Free SIP Calculator. Calculate your mutual fund SIP returns and future wealth instantly."
-        />
-      </Helmet>
       <div className="max-w-5xl mx-auto">
         <h1 className="text-4xl font-bold mb-8">SIP Calculator</h1>
 
