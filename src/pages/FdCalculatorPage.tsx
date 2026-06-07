@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import ResultCard from "../components/ResultCard";
 import CalculatorInput from "../components/CalculatorInput";
 import CalculatorLayout from "../components/CalculatorLayout";
+import FaqSection from "../components/FaqSection";
 
 export default function FdCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -141,38 +142,20 @@ export default function FdCalculatorPage() {
           </p>
         </section>
 
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold mb-6">
-            Frequently Asked Questions
-          </h2>
-
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-semibold text-lg">
-                Is FD better than SIP/Lumpsum?
-              </h3>
-
-              <p className="text-gray-600">
-                FD is better if your primary goal is absolute capital protection
-                and guaranteed returns. Unlike market-linked mutual funds
-                (SIP/Lumpsum), FDs carry zero market risk and are unaffected by
-                market crashes.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-lg">
-                How much should I invest in an FD?
-              </h3>
-
-              <p className="text-gray-600">
-                You should invest your emergency funds (typically 3 to 6 months
-                of living expenses), short-term goals (under 3 years), or any
-                corpus you cannot afford to risk losing in the stock market.
-              </p>
-            </div>
-          </div>
-        </section>
+        <FaqSection
+          faqs={[
+            {
+              question: "Is FD better than SIP/Lumpsum?",
+              answer:
+                "FD is better if your primary goal is absolute capital protection and guaranteed returns. Unlike market-linked mutual funds (SIP/Lumpsum), FDs carry zero market risk and are unaffected by market crashes.",
+            },
+            {
+              question: "How much should I invest in an FD?",
+              answer:
+                "You should invest your emergency funds (typically 3 to 6 months of living expenses), short-term goals (under 3 years), or any corpus you cannot afford to risk losing in the stock market.",
+            },
+          ]}
+        />
       </CalculatorLayout>
     </>
   );

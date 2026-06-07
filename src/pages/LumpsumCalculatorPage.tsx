@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import ResultCard from "../components/ResultCard";
 import CalculatorInput from "../components/CalculatorInput";
 import CalculatorLayout from "../components/CalculatorLayout";
+import FaqSection from "../components/FaqSection";
 
 export default function LumpsumCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -141,51 +142,25 @@ export default function LumpsumCalculatorPage() {
           </p>
         </section>
 
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold mb-6">
-            Frequently Asked Questions
-          </h2>
-
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-semibold text-lg">
-                What is a Lumpsum investment?
-              </h3>
-
-              <p className="text-gray-600">
-                A Lumpsum investment is a one-time deposit of a significant
-                amount of money into a mutual fund or financial scheme, rather
-                than spreading it out over time.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-lg">
-                Is Lumpsum better than SIP?
-              </h3>
-
-              <p className="text-gray-600">
-                Lumpsum is generally better when you have a large cash surplus
-                and the market is low or stable, whereas SIP is better for
-                investing regular monthly income and averaging out market
-                volatility.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-lg">
-                When should I invest in a Lumpsum?
-              </h3>
-
-              <p className="text-gray-600">
-                The best time to invest in a Lumpsum is when you have a large
-                amount of money available and the market conditions are
-                favorable, such as during a market downturn or when valuations
-                are attractive.
-              </p>
-            </div>
-          </div>
-        </section>
+        <FaqSection
+          faqs={[
+            {
+              question: "What is a Lumpsum investment?",
+              answer:
+                "A Lumpsum investment is a one-time deposit of a significant amount of money into a mutual fund or financial scheme, rather than spreading it out over time.",
+            },
+            {
+              question: "Is Lumpsum better than SIP?",
+              answer:
+                "Lumpsum is generally better when you have a large cash surplus and the market is low or stable, whereas SIP is better for investing regular monthly income and averaging out market volatility.",
+            },
+            {
+              question: "When should I invest in a Lumpsum?",
+              answer:
+                "The best time to invest in a Lumpsum is when you have a large amount of money available and the market conditions are favorable, such as during a market downturn or when valuations are attractive.",
+            },
+          ]}
+        />
       </CalculatorLayout>
     </>
   );

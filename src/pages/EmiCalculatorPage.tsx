@@ -8,6 +8,7 @@ import { calculateEmi } from "../calculators/emi";
 import ResultCard from "../components/ResultCard";
 import CalculatorInput from "../components/CalculatorInput";
 import CalculatorLayout from "../components/CalculatorLayout";
+import FaqSection from "../components/FaqSection";
 
 export default function EmiCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -139,52 +140,25 @@ export default function EmiCalculatorPage() {
           </p>
         </section>
 
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold mb-6">
-            Frequently Asked Questions
-          </h2>
-
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-semibold text-lg">
-                How is an EMI calculated?
-              </h3>
-
-              <p className="text-gray-600">
-                An EMI depends on three main factors: the loan amount
-                (principal), the interest rate, and the loan tenure. It balances
-                higher interest payments at the start with higher principal
-                repayments toward the end of the loan.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-lg">
-                Is a longer loan tenure better for EMIs?
-              </h3>
-
-              <p className="text-gray-600">
-                A longer tenure reduces your monthly EMI amount, making it
-                easier on your cash flow. However, it significantly increases
-                the total interest amount you will pay back over the lifetime of
-                the loan.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-lg">
-                Can I change my EMI amount later?
-              </h3>
-
-              <p className="text-gray-600">
-                Generally, EMIs are fixed. However, you can effectively lower
-                your monthly EMIs or shorten your loan tenure by making a
-                principal prepayment or by refinancing your loan at a lower
-                interest rate.
-              </p>
-            </div>
-          </div>
-        </section>
+        <FaqSection
+          faqs={[
+            {
+              question: "How is an EMI calculated?",
+              answer:
+                "An EMI depends on three main factors: the loan amount (principal), the interest rate, and the loan tenure. It balances higher interest payments at the start with higher principal repayments toward the end of the loan.",
+            },
+            {
+              question: "Is a longer loan tenure better for EMIs?",
+              answer:
+                "A longer tenure reduces your monthly EMI amount, making it easier on your cash flow. However, it significantly increases the total interest amount you will pay back over the lifetime of the loan.",
+            },
+            {
+              question: "Can I change my EMI amount later?",
+              answer:
+                "Generally, EMIs are fixed. However, you can effectively lower your monthly EMIs or shorten your loan tenure by making a principal prepayment or by refinancing your loan at a lower interest rate.",
+            },
+          ]}
+        />
       </CalculatorLayout>
     </>
   );
