@@ -1,4 +1,5 @@
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import { formatCurrency } from "../utils/formatCurrency";
 
 interface Props {
   investedAmount: number;
@@ -12,11 +13,11 @@ export default function SipPieChart({
   const data = [
     {
       name: "Invested Amount",
-      value: investedAmount,
+      value: Math.round(investedAmount),
     },
     {
       name: "Returns",
-      value: estimatedReturns,
+      value: Math.round(estimatedReturns),
     },
   ];
 
@@ -31,7 +32,7 @@ export default function SipPieChart({
           ))}
         </Pie>
 
-        <Tooltip />
+        <Tooltip formatter={(value) => formatCurrency(Number(value))} />
       </PieChart>
     </ResponsiveContainer>
   );
