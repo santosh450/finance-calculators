@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { calculateEmi } from "../calculators/emi";
 import ResultCard from "../components/ResultCard";
 import CalculatorInput from "../components/CalculatorInput";
+import CalculatorLayout from "../components/CalculatorLayout";
 
 export default function EmiCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -40,9 +41,7 @@ export default function EmiCalculatorPage() {
           content="Free EMI Calculator. Calculate monthly EMI, total interest and total payment instantly."
         />
       </Helmet>
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">Lumpsum Calculator</h1>
-
+      <CalculatorLayout title="EMI Calculator">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Input Card */}
 
@@ -186,7 +185,7 @@ export default function EmiCalculatorPage() {
             </div>
           </div>
         </section>
-      </div>
+      </CalculatorLayout>
     </>
   );
 }

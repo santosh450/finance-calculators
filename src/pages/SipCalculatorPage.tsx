@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import ResultCard from "../components/ResultCard";
 import CalculatorInput from "../components/CalculatorInput";
+import CalculatorLayout from "../components/CalculatorLayout";
 
 export default function SipCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -40,9 +41,7 @@ export default function SipCalculatorPage() {
           content="Free SIP Calculator. Calculate your mutual fund SIP returns and future wealth instantly."
         />
       </Helmet>
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">SIP Calculator</h1>
-
+      <CalculatorLayout title="SIP Calculator">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Input Card */}
 
@@ -176,7 +175,7 @@ export default function SipCalculatorPage() {
             </div>
           </div>
         </section>
-      </div>
+      </CalculatorLayout>
     </>
   );
 }

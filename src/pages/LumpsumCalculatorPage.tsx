@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import ResultCard from "../components/ResultCard";
 import CalculatorInput from "../components/CalculatorInput";
+import CalculatorLayout from "../components/CalculatorLayout";
 
 export default function LumpsumCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -40,9 +41,7 @@ export default function LumpsumCalculatorPage() {
           content="Free Lumpsum Calculator. Calculate the future value of your one-time investment instantly."
         />
       </Helmet>
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">Lumpsum Calculator</h1>
-
+      <CalculatorLayout title="Lumpsum Calculator">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Input Card */}
 
@@ -187,7 +186,7 @@ export default function LumpsumCalculatorPage() {
             </div>
           </div>
         </section>
-      </div>
+      </CalculatorLayout>
     </>
   );
 }

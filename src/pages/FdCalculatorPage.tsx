@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import ResultCard from "../components/ResultCard";
 import CalculatorInput from "../components/CalculatorInput";
+import CalculatorLayout from "../components/CalculatorLayout";
 
 export default function FdCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -42,9 +43,7 @@ export default function FdCalculatorPage() {
           content="Free FD Calculator. Calculate fixed deposit maturity amount and interest earned instantly."
         />
       </Helmet>
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">FD Calculator</h1>
-
+      <CalculatorLayout title="FD Calculator">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Input Card */}
 
@@ -174,7 +173,7 @@ export default function FdCalculatorPage() {
             </div>
           </div>
         </section>
-      </div>
+      </CalculatorLayout>
     </>
   );
 }
