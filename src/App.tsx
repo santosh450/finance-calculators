@@ -7,6 +7,7 @@ import CalculatorsPage from "./pages/CalculatorsPage";
 import BlogPage from "./pages/BlogPage";
 import AboutPage from "./pages/AboutPage";
 import SipCalculatorPage from "./pages/SipCalculatorPage";
+import LumpsumCalculatorPage from "./pages/LumpsumCalculatorPage";
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/sip-calculator" element={<SipCalculatorPage />} />
+          <Route
+            path="/lumpsum-calculator"
+            element={<LumpsumCalculatorPage />}
+          />
         </Routes>
       </Layout>
     </BrowserRouter>
