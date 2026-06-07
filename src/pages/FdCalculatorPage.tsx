@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import ResultCard from "../components/ResultCard";
+import CalculatorInput from "../components/CalculatorInput";
 
 export default function FdCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -50,86 +51,35 @@ export default function FdCalculatorPage() {
           <div className="border rounded-xl p-6 shadow-sm">
             <h2 className="text-2xl font-semibold mb-6">Investment Details</h2>
 
-            <div className="mb-6">
-              <label className="block mb-2 font-medium">
-                Investment Amount
-              </label>
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-lg font-semibold mb-2">
-                  ₹{depositAmount.toLocaleString("en-IN")}
-                </div>
+            <CalculatorInput
+              label="Monthly Investment"
+              value={depositAmount}
+              onChange={setDepositAmount}
+              min={1000}
+              max={10000000}
+              step={1000}
+              prefix="₹"
+            />
 
-                <input
-                  type="number"
-                  value={depositAmount}
-                  onChange={(e) => setDepositAmount(Number(e.target.value))}
-                  className="w-32 border rounded-lg px-3 py-2"
-                />
-              </div>
+            <CalculatorInput
+              label="Expected Return"
+              value={interestRate}
+              onChange={setInterestRate}
+              min={1}
+              max={30}
+              step={0.5}
+              suffix="%"
+            />
 
-              <input
-                type="range"
-                min="1000"
-                max="10000000"
-                step="1000"
-                value={depositAmount}
-                onChange={(e) => setDepositAmount(Number(e.target.value))}
-                className="w-full cursor-pointer"
-              />
-            </div>
-
-            <div className="mb-6">
-              <label className="block mb-2 font-medium">Expected Return</label>
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-lg font-semibold mb-2">
-                  {interestRate}%
-                </div>
-
-                <input
-                  type="number"
-                  value={interestRate}
-                  onChange={(e) => setInterestRate(Number(e.target.value))}
-                  className="w-32 border rounded-lg px-3 py-2"
-                />
-              </div>
-
-              <input
-                type="range"
-                min="1"
-                max="30"
-                step="0.5"
-                value={interestRate}
-                onChange={(e) => setInterestRate(Number(e.target.value))}
-                className="w-full cursor-pointer"
-              />
-            </div>
-
-            <div className="mb-6">
-              <label className="block mb-2 font-medium">
-                Investment Period
-              </label>
-
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-lg font-semibold mb-2">{tenure} Years</div>
-
-                <input
-                  type="number"
-                  value={tenure}
-                  onChange={(e) => setTenure(Number(e.target.value))}
-                  className="w-32 border rounded-lg px-3 py-2"
-                />
-              </div>
-
-              <input
-                type="range"
-                min="1"
-                max="40"
-                step="1"
-                value={tenure}
-                onChange={(e) => setTenure(Number(e.target.value))}
-                className="w-full cursor-pointer"
-              />
-            </div>
+            <CalculatorInput
+              label="Investment Period"
+              value={tenure}
+              onChange={setTenure}
+              min={1}
+              max={40}
+              step={1}
+              suffix=" Years"
+            />
           </div>
 
           {/* Results Card */}
@@ -155,13 +105,6 @@ export default function FdCalculatorPage() {
                 valueClassName="text-blue-600 text-3xl"
               />
 
-              <div>
-                <p className="text-gray-500">Maturity Amount</p>
-
-                <p className="text-3xl font-bold text-blue-600">
-                  {formatCurrency(result.maturityValue)}
-                </p>
-              </div>
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.href);

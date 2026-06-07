@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { calculateEmi } from "../calculators/emi";
 import ResultCard from "../components/ResultCard";
+import CalculatorInput from "../components/CalculatorInput";
 
 export default function EmiCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -48,80 +49,35 @@ export default function EmiCalculatorPage() {
           <div className="border rounded-xl p-6 shadow-sm">
             <h2 className="text-2xl font-semibold mb-6">Investment Details</h2>
 
-            <div className="mb-6">
-              <label className="block mb-2 font-medium">Loan Amount</label>
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-lg font-semibold mb-2">
-                  ₹{loanAmount.toLocaleString("en-IN")}
-                </div>
+            <CalculatorInput
+              label="Loan Amount"
+              value={loanAmount}
+              onChange={setLoanAmount}
+              min={100000}
+              max={10000000}
+              step={50000}
+              prefix="₹"
+            />
 
-                <input
-                  type="number"
-                  value={loanAmount}
-                  onChange={(e) => setLoanAmount(Number(e.target.value))}
-                  className="w-32 border rounded-lg px-3 py-2"
-                />
-              </div>
+            <CalculatorInput
+              label="Interest Rate"
+              value={rate}
+              onChange={setRate}
+              min={1}
+              max={20}
+              step={0.1}
+              suffix="%"
+            />
 
-              <input
-                type="range"
-                min="100000"
-                max="10000000"
-                step="50000"
-                value={loanAmount}
-                onChange={(e) => setLoanAmount(Number(e.target.value))}
-                className="w-full cursor-pointer"
-              />
-            </div>
-
-            <div className="mb-6">
-              <label className="block mb-2 font-medium">Interest Rate</label>
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-lg font-semibold mb-2">{rate}%</div>
-
-                <input
-                  type="number"
-                  value={rate}
-                  onChange={(e) => setRate(Number(e.target.value))}
-                  className="w-32 border rounded-lg px-3 py-2"
-                />
-              </div>
-
-              <input
-                type="range"
-                min="1"
-                max="20"
-                step="0.1"
-                value={rate}
-                onChange={(e) => setRate(Number(e.target.value))}
-                className="w-full cursor-pointer"
-              />
-            </div>
-
-            <div className="mb-6">
-              <label className="block mb-2 font-medium">Loan Tenure</label>
-
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-lg font-semibold mb-2">{years} Years</div>
-
-                <input
-                  type="number"
-                  value={years}
-                  onChange={(e) => setYears(Number(e.target.value))}
-                  className="w-32 border rounded-lg px-3 py-2"
-                />
-              </div>
-
-              <input
-                type="range"
-                min="1"
-                max="30"
-                step="1"
-                value={years}
-                onChange={(e) => setYears(Number(e.target.value))}
-                className="w-full cursor-pointer"
-              />
-            </div>
+            <CalculatorInput
+              label="Loan Tenure"
+              value={years}
+              onChange={setYears}
+              min={1}
+              max={30}
+              step={1}
+              suffix=" Years"
+            />
           </div>
 
           {/* Results Card */}

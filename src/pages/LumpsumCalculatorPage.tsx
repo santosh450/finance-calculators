@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import ResultCard from "../components/ResultCard";
+import CalculatorInput from "../components/CalculatorInput";
 
 export default function LumpsumCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -48,84 +49,35 @@ export default function LumpsumCalculatorPage() {
           <div className="border rounded-xl p-6 shadow-sm">
             <h2 className="text-2xl font-semibold mb-6">Investment Details</h2>
 
-            <div className="mb-6">
-              <label className="block mb-2 font-medium">
-                Investment Amount
-              </label>
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-lg font-semibold mb-2">
-                  ₹{principal.toLocaleString("en-IN")}
-                </div>
+            <CalculatorInput
+              label="Investment Amount"
+              value={principal}
+              onChange={setPrincipal}
+              min={1000}
+              max={10000000}
+              step={1000}
+              prefix="₹"
+            />
 
-                <input
-                  type="number"
-                  value={principal}
-                  onChange={(e) => setPrincipal(Number(e.target.value))}
-                  className="w-32 border rounded-lg px-3 py-2"
-                />
-              </div>
+            <CalculatorInput
+              label="Expected Return"
+              value={rate}
+              onChange={setRate}
+              min={1}
+              max={30}
+              step={0.5}
+              suffix="%"
+            />
 
-              <input
-                type="range"
-                min="1000"
-                max="10000000"
-                step="1000"
-                value={principal}
-                onChange={(e) => setPrincipal(Number(e.target.value))}
-                className="w-full cursor-pointer"
-              />
-            </div>
-
-            <div className="mb-6">
-              <label className="block mb-2 font-medium">Expected Return</label>
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-lg font-semibold mb-2">{rate}%</div>
-
-                <input
-                  type="number"
-                  value={rate}
-                  onChange={(e) => setRate(Number(e.target.value))}
-                  className="w-32 border rounded-lg px-3 py-2"
-                />
-              </div>
-
-              <input
-                type="range"
-                min="1"
-                max="30"
-                step="0.5"
-                value={rate}
-                onChange={(e) => setRate(Number(e.target.value))}
-                className="w-full cursor-pointer"
-              />
-            </div>
-
-            <div className="mb-6">
-              <label className="block mb-2 font-medium">
-                Investment Period
-              </label>
-
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-lg font-semibold mb-2">{years} Years</div>
-
-                <input
-                  type="number"
-                  value={years}
-                  onChange={(e) => setYears(Number(e.target.value))}
-                  className="w-32 border rounded-lg px-3 py-2"
-                />
-              </div>
-
-              <input
-                type="range"
-                min="1"
-                max="40"
-                step="1"
-                value={years}
-                onChange={(e) => setYears(Number(e.target.value))}
-                className="w-full cursor-pointer"
-              />
-            </div>
+            <CalculatorInput
+              label="Investment Period"
+              value={years}
+              onChange={setYears}
+              min={1}
+              max={40}
+              step={1}
+              suffix=" Years"
+            />
           </div>
 
           {/* Results Card */}
