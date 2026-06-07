@@ -5,6 +5,7 @@ import { formatCurrency } from "../utils/formatCurrency";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import ResultCard from "../components/ResultCard";
 
 export default function SipCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -133,29 +134,22 @@ export default function SipCalculatorPage() {
             <h2 className="text-2xl font-semibold mb-6">Results</h2>
 
             <div className="space-y-4">
-              <div>
-                <p className="text-gray-500">Invested Amount</p>
+              <ResultCard
+                label="Invested Amount"
+                value={formatCurrency(result.investedAmount)}
+              />
 
-                <p className="text-2xl font-bold">
-                  {formatCurrency(result.investedAmount)}
-                </p>
-              </div>
+              <ResultCard
+                label="Estimated Returns"
+                value={formatCurrency(result.estimatedReturns)}
+                valueClassName="text-green-600"
+              />
 
-              <div>
-                <p className="text-gray-500">Estimated Returns</p>
-
-                <p className="text-2xl font-bold text-green-600">
-                  {formatCurrency(result.estimatedReturns)}
-                </p>
-              </div>
-
-              <div>
-                <p className="text-gray-500">Maturity Value</p>
-
-                <p className="text-3xl font-bold text-blue-600">
-                  {formatCurrency(result.maturityValue)}
-                </p>
-              </div>
+              <ResultCard
+                label="Maturity Value"
+                value={formatCurrency(result.maturityValue)}
+                valueClassName="text-blue-600 text-3xl"
+              />
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.href);

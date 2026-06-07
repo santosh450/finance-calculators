@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { calculateEmi } from "../calculators/emi";
+import ResultCard from "../components/ResultCard";
 
 export default function EmiCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -129,29 +130,22 @@ export default function EmiCalculatorPage() {
             <h2 className="text-2xl font-semibold mb-6">Results</h2>
 
             <div className="space-y-4">
-              <div>
-                <p className="text-gray-500">Monthly EMI</p>
+              <ResultCard
+                label="Monthly EMI"
+                value={formatCurrency(result.emi)}
+                valueClassName="text-blue-600"
+              />
 
-                <p className="text-3xl font-bold text-blue-600">
-                  {formatCurrency(result.emi)}
-                </p>
-              </div>
+              <ResultCard
+                label="Total Interest"
+                value={formatCurrency(result.totalInterest)}
+                valueClassName="text-green-600"
+              />
 
-              <div>
-                <p className="text-gray-500">Total Interest</p>
-
-                <p className="text-2xl font-bold text-green-600">
-                  {formatCurrency(result.totalInterest)}
-                </p>
-              </div>
-
-              <div>
-                <p className="text-gray-500">Total Payment</p>
-
-                <p className="text-2xl font-bold">
-                  {formatCurrency(result.totalPayment)}
-                </p>
-              </div>
+              <ResultCard
+                label="Total Payment"
+                value={formatCurrency(result.totalPayment)}
+              />
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.href);

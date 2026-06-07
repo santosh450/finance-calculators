@@ -5,6 +5,7 @@ import { formatCurrency } from "../utils/formatCurrency";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import ResultCard from "../components/ResultCard";
 
 export default function FdCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -137,21 +138,22 @@ export default function FdCalculatorPage() {
             <h2 className="text-2xl font-semibold mb-6">Results</h2>
 
             <div className="space-y-4">
-              <div>
-                <p className="text-gray-500">Deposit Amount</p>
+              <ResultCard
+                label="Deposit Amount"
+                value={formatCurrency(result.investedAmount)}
+              />
 
-                <p className="text-2xl font-bold">
-                  {formatCurrency(result.investedAmount)}
-                </p>
-              </div>
+              <ResultCard
+                label="Interest Earned"
+                value={formatCurrency(result.interestEarned)}
+                valueClassName="text-green-600"
+              />
 
-              <div>
-                <p className="text-gray-500">Interest Earned</p>
-
-                <p className="text-2xl font-bold text-green-600">
-                  {formatCurrency(result.interestEarned)}
-                </p>
-              </div>
+              <ResultCard
+                label="Maturity Amount"
+                value={formatCurrency(result.maturityValue)}
+                valueClassName="text-blue-600 text-3xl"
+              />
 
               <div>
                 <p className="text-gray-500">Maturity Amount</p>
