@@ -3,6 +3,7 @@ import CalculatorCard from "../components/CalculatorCard";
 import { calculators } from "../data/Calculators";
 import { Search } from "lucide-react";
 import { Calculator, BadgeCheck, Zap, Clock3 } from "lucide-react";
+import { blogs } from "../data/blogs";
 
 export default function HomePage() {
   return (
@@ -134,6 +135,31 @@ export default function HomePage() {
             <div className="text-3xl font-bold">24/7</div>
             <p className="text-gray-600">Available</p>
           </div>
+        </div>
+      </section>
+
+      {/* BLOGS */}
+
+      <section className="mb-20">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl font-bold">Latest Articles</h2>
+
+          <span className="text-blue-600 font-medium">Coming Soon</span>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {blogs.map((blog) => (
+            <div
+              key={blog.slug}
+              className="border rounded-2xl p-6 hover:shadow-md transition"
+            >
+              <h3 className="text-xl font-semibold mb-3">{blog.title}</h3>
+
+              <p className="text-gray-600 mb-4">{blog.description}</p>
+
+              <span className="text-blue-600 font-medium">Read More →</span>
+            </div>
+          ))}
         </div>
       </section>
 
