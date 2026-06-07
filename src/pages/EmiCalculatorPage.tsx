@@ -9,6 +9,7 @@ import ResultCard from "../components/ResultCard";
 import CalculatorInput from "../components/CalculatorInput";
 import CalculatorLayout from "../components/CalculatorLayout";
 import FaqSection from "../components/FaqSection";
+import ExplanationSection from "../components/ExplanationSection";
 
 export default function EmiCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -129,16 +130,10 @@ export default function EmiCalculatorPage() {
           />
         </div>
 
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold mb-4">What is an EMI?</h2>
-
-          <p className="text-gray-600 leading-7">
-            An EMI, or Equated Monthly Installment, is a fixed payment amount
-            made by a borrower to a lender at a specified date each calendar
-            month. EMIs are used to fully pay off both interest and principal
-            over a set number of years.
-          </p>
-        </section>
+        <ExplanationSection
+          title="What is an EMI?"
+          content="An EMI, or Equated Monthly Installment, is a fixed payment amount made by a borrower to a lender at a specified date each calendar month. EMIs are used to fully pay off both interest and principal over a set number of years."
+        />
 
         <FaqSection
           faqs={[

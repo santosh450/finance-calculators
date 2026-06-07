@@ -9,6 +9,7 @@ import ResultCard from "../components/ResultCard";
 import CalculatorInput from "../components/CalculatorInput";
 import CalculatorLayout from "../components/CalculatorLayout";
 import FaqSection from "../components/FaqSection";
+import ExplanationSection from "../components/ExplanationSection";
 
 export default function LumpsumCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -130,17 +131,10 @@ export default function LumpsumCalculatorPage() {
           />
         </div>
 
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold mb-4">
-            What is a Lumpsum Investment?
-          </h2>
-
-          <p className="text-gray-600 leading-7">
-            A lumpsum investment is a one-time investment made into a mutual
-            fund, stock or other financial instrument. The investment grows
-            through the power of compounding over time.
-          </p>
-        </section>
+        <ExplanationSection
+          title="What is a Lumpsum Investment?"
+          content="A lumpsum investment is a one-time investment made into a mutual fund, stock or other financial instrument. The investment grows through the power of compounding over time."
+        />
 
         <FaqSection
           faqs={[

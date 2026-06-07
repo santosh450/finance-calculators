@@ -9,6 +9,7 @@ import ResultCard from "../components/ResultCard";
 import CalculatorInput from "../components/CalculatorInput";
 import CalculatorLayout from "../components/CalculatorLayout";
 import FaqSection from "../components/FaqSection";
+import ExplanationSection from "../components/ExplanationSection";
 
 export default function FdCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -132,15 +133,10 @@ export default function FdCalculatorPage() {
           />
         </div>
 
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold mb-4">What is an FD?</h2>
-
-          <p className="text-gray-600 leading-7">
-            FD stands for Fixed Deposit. It is a financial instrument offered by
-            banks and post offices where you lock in a lump sum amount for a
-            specific tenure at a guaranteed, fixed interest rate.
-          </p>
-        </section>
+        <ExplanationSection
+          title="What is an FD?"
+          content="FD stands for Fixed Deposit. It is a financial instrument offered by banks and post offices where you lock in a lump sum amount for a"
+        />
 
         <FaqSection
           faqs={[

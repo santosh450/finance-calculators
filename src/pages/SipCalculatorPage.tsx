@@ -9,6 +9,7 @@ import ResultCard from "../components/ResultCard";
 import CalculatorInput from "../components/CalculatorInput";
 import CalculatorLayout from "../components/CalculatorLayout";
 import FaqSection from "../components/FaqSection";
+import ExplanationSection from "../components/ExplanationSection";
 
 export default function SipCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -129,16 +130,10 @@ export default function SipCalculatorPage() {
           />
         </div>
 
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold mb-4">What is a SIP?</h2>
-
-          <p className="text-gray-600 leading-7">
-            A Systematic Investment Plan (SIP) allows investors to invest a
-            fixed amount regularly into mutual funds. SIPs help build wealth
-            through disciplined investing and the power of compounding over the
-            long term.
-          </p>
-        </section>
+        <ExplanationSection
+          title="What is a SIP?"
+          content="A Systematic Investment Plan (SIP) allows investors to invest a fixed amount regularly into mutual funds. SIPs help build wealth"
+        />
 
         <FaqSection
           faqs={[
