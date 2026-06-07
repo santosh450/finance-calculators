@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import CalculatorCard from "../components/CalculatorCard";
+import { calculators } from "../data/Calculators";
 import { Search } from "lucide-react";
+import { Calculator, BadgeCheck, Zap, Clock3 } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -52,39 +54,86 @@ export default function HomePage() {
 
       {/* CALCULATORS */}
 
-      <section>
-        <h2 className="text-3xl font-bold mb-8">Popular Calculators</h2>
+      <section className="mb-20">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl font-bold">Popular Calculators</h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* <CalculatorCard
-            title="SIP Calculator"
-            description="Calculate future value of SIP investments."
-            path="/sip-calculator"
-          />
+          <Link to="/calculators" className="text-blue-600 font-medium">
+            View All →
+          </Link>
+        </div>
 
-          <CalculatorCard
-            title="Lumpsum Calculator"
-            description="Calculate future value of a one-time investment."
-            path="/lumpsum-calculator"
-          />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {calculators.slice(0, 4).map((calculator) => (
+            <CalculatorCard key={calculator.path} {...calculator} />
+          ))}
+        </div>
+      </section>
 
-          <CalculatorCard
-            title="FD Calculator"
-            description="Estimate fixed deposit maturity amount."
-            path="/fd-calculator"
-          />
+      {/* CATEGORIES */}
 
-          <CalculatorCard
-            title="EMI Calculator"
-            description="Know your monthly loan repayments."
-            path="/emi-calculator"
-          />
+      <section className="mb-20">
+        <h2 className="text-3xl font-bold mb-8">Categories</h2>
 
-          <CalculatorCard
-            title="CAGR Calculator"
-            description="Measure annualized investment growth."
-            path="/"
-          /> */}
+        <div className="grid gap-6 md:grid-cols-3">
+          <div className="border rounded-2xl p-6">
+            <h3 className="text-xl font-semibold mb-4">📈 Investment</h3>
+
+            <ul className="space-y-2 text-gray-600">
+              <li>SIP Calculator</li>
+              <li>Lumpsum Calculator</li>
+            </ul>
+          </div>
+
+          <div className="border rounded-2xl p-6">
+            <h3 className="text-xl font-semibold mb-4">💳 Loans</h3>
+
+            <ul className="space-y-2 text-gray-600">
+              <li>EMI Calculator</li>
+            </ul>
+          </div>
+
+          <div className="border rounded-2xl p-6">
+            <h3 className="text-xl font-semibold mb-4">🏦 Deposits</h3>
+
+            <ul className="space-y-2 text-gray-600">
+              <li>FD Calculator</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* TRUST SECTION */}
+
+      <section className="mb-20">
+        <h2 className="text-3xl font-bold text-center mb-10">
+          Why Use Our Calculators?
+        </h2>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="border rounded-2xl p-6 text-center">
+            <Calculator className="mx-auto mb-3 text-blue-600" size={32} />
+            <div className="text-3xl font-bold">{calculators.length}+</div>
+            <p className="text-gray-600">Calculators</p>
+          </div>
+
+          <div className="border rounded-2xl p-6 text-center">
+            <BadgeCheck className="mx-auto mb-3 text-green-600" size={32} />
+            <div className="text-3xl font-bold">100%</div>
+            <p className="text-gray-600">Free</p>
+          </div>
+
+          <div className="border rounded-2xl p-6 text-center">
+            <Zap className="mx-auto mb-3 text-yellow-500" size={32} />
+            <div className="text-3xl font-bold">Instant</div>
+            <p className="text-gray-600">Results</p>
+          </div>
+
+          <div className="border rounded-2xl p-6 text-center">
+            <Clock3 className="mx-auto mb-3 text-purple-600" size={32} />
+            <div className="text-3xl font-bold">24/7</div>
+            <p className="text-gray-600">Available</p>
+          </div>
         </div>
       </section>
 
