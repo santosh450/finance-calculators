@@ -4,18 +4,30 @@ interface Props {
   title: string;
   description: string;
   path: string;
+  icon: React.ElementType;
 }
 
-export default function CalculatorCard({ title, description, path }: Props) {
+export default function CalculatorCard({
+  title,
+  description,
+  path,
+  icon: Icon,
+}: Props) {
   return (
-    <div className="border rounded-xl p-6 shadow-sm hover:shadow-md transition">
-      <h2 className="text-xl font-semibold mb-2">{title}</h2>
+    <Link to={path}>
+      <div className="group bg-white border rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+        <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4">
+          <Icon size={24} />
+        </div>
 
-      <p className="text-gray-600 mb-4">{description}</p>
+        <h2 className="text-xl font-semibold mb-2 group-hover:text-blue-600">
+          {title}
+        </h2>
 
-      <Link to={path} className="text-blue-600 font-medium">
-        Open Calculator →
-      </Link>
-    </div>
+        <p className="text-gray-600 mb-4">{description}</p>
+
+        <span className="text-blue-600 font-medium">Open Calculator →</span>
+      </div>
+    </Link>
   );
 }

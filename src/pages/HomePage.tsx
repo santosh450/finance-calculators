@@ -27,7 +27,7 @@ export default function HomePage() {
         <h2 className="text-3xl font-bold mb-8">Popular Calculators</h2>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <CalculatorCard
+          {/* <CalculatorCard
             title="SIP Calculator"
             description="Calculate future value of SIP investments."
             path="/sip-calculator"
@@ -55,7 +55,7 @@ export default function HomePage() {
             title="CAGR Calculator"
             description="Measure annualized investment growth."
             path="/"
-          />
+          /> */}
         </div>
       </section>
 
