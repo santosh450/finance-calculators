@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { calculateCagr } from "../calculators/cagr";
-import BreakdownPieChart from "../components/BreakdownPieChart";
-import { formatCurrency } from "../utils/formatCurrency";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import CalculatorCard from "../components/CalculatorCard";
-import { calculators } from "../data/Calculators";
+import { calculators } from "../data/calculators";
 import { Search } from "lucide-react";
 import { Calculator, BadgeCheck, Zap, Clock3 } from "lucide-react";
 import { blogs } from "../data/blogs";

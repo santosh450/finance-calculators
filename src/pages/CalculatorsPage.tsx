@@ -1,5 +1,5 @@
 import CalculatorCard from "../components/CalculatorCard";
-import { calculators } from "../data/Calculators";
+import { calculators } from "../data/calculators";
 
 export default function CalculatorsPage() {
   return (
