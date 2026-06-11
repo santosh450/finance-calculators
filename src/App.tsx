@@ -11,6 +11,7 @@ import LumpsumCalculatorPage from "./pages/LumpsumCalculatorPage";
 import FdCalculatorPage from "./pages/FdCalculatorPage";
 import EmiCalculatorPage from "./pages/EmiCalculatorPage";
 import CagrCalculatorPage from "./pages/CagrCalculatorPage";
+import RdCalculatorPage from "./pages/RdCalculatorPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             path="/lumpsum-calculator"
             element={<LumpsumCalculatorPage />}
           />
+          <Route path="/rd-calculator" element={<RdCalculatorPage />} />
         </Routes>
       </Layout>
     </BrowserRouter>

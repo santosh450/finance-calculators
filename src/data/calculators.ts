@@ -36,4 +36,11 @@ export const calculators = [
     path: "/cagr-calculator",
     icon: TrendingUp,
   },
+  {
+  title: "RD Calculator",
+  description:
+    "Calculate recurring deposit maturity value.",
+  path: "/rd-calculator",
+  icon: Landmark,
+}
 ];
