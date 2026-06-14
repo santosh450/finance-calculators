@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import CalculatorCard from "../components/CalculatorCard";
 import { calculators } from "../data/calculators";
 import { Search } from "lucide-react";
@@ -6,6 +7,11 @@ import { Calculator, BadgeCheck, Zap, Clock3 } from "lucide-react";
 import { blogs } from "../data/blogs";
 
 export default function HomePage() {
+  const [search, setSearch] = useState("");
+  const filteredCalculators = calculators.filter((calculator) =>
+    calculator.title.toLowerCase().includes(search.toLowerCase()),
+  );
+
   return (
     <div>
       {/* HERO */}
@@ -47,11 +53,37 @@ export default function HomePage() {
 
           <input
             type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             placeholder="Search calculators..."
-            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full pl-12 pr-4 py-4 border rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
       </div>
+
+      {search && (
+        <div className="max-w-2xl mx-auto mb-10">
+          <div className="bg-white border rounded-2xl shadow-lg overflow-hidden">
+            {filteredCalculators.length > 0 ? (
+              filteredCalculators.map((calculator) => (
+                <Link
+                  key={calculator.path}
+                  to={calculator.path}
+                  className="block px-5 py-4 hover:bg-gray-50 border-b last:border-b-0"
+                >
+                  <div className="font-medium">{calculator.title}</div>
+
+                  <div className="text-sm text-gray-500">
+                    {calculator.description}
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <div className="p-4 text-gray-500">No calculators found</div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* CALCULATORS */}
 
@@ -64,8 +96,8 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {calculators.slice(0, 4).map((calculator) => (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          {calculators.slice(0, 5).map((calculator) => (
             <CalculatorCard key={calculator.path} {...calculator} />
           ))}
         </div>
