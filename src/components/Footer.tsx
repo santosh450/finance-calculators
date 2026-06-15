@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 py-10">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-3">FinanceCalc</h3>
+            <h3 className="text-xl font-bold mb-3">CalcWise</h3>
 
             <p className="text-gray-600">
               Free financial calculators for investments, loans and deposits.
@@ -47,7 +47,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t mt-8 pt-6 text-center text-gray-500">
-          © {new Date().getFullYear()} FinanceCalc. All rights reserved.
+          © {new Date().getFullYear()} CalcWise. All rights reserved.
         </div>
       </div>
     </footer>

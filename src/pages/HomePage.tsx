@@ -3,8 +3,11 @@ import { useState } from "react";
 import CalculatorCard from "../components/CalculatorCard";
 import { calculators } from "../data/calculators";
 import { Search } from "lucide-react";
-import { Calculator, BadgeCheck, Zap, Clock3 } from "lucide-react";
+// import { Calculator, BadgeCheck, Zap, Clock3 } from "lucide-react";
 import { blogs } from "../data/blogs";
+import CategoryCard from "../components/CategoryCard";
+import { categories } from "../constants/categories";
+import { Calculator, BadgeCheck, User, ShieldCheck } from "lucide-react";
 
 export default function HomePage() {
   const [search, setSearch] = useState("");
@@ -16,7 +19,7 @@ export default function HomePage() {
     <div>
       {/* HERO */}
 
-      <section className="text-center py-20">
+      <section className="text-center py-8">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
           Financial Calculators Made Easy
         </h1>
@@ -108,64 +111,59 @@ export default function HomePage() {
       <section className="mb-20">
         <h2 className="text-3xl font-bold mb-8">Categories</h2>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          <div className="border rounded-2xl p-6">
-            <h3 className="text-xl font-semibold mb-4">📈 Investment</h3>
-
-            <ul className="space-y-2 text-gray-600">
-              <li>SIP Calculator</li>
-              <li>Lumpsum Calculator</li>
-            </ul>
-          </div>
-
-          <div className="border rounded-2xl p-6">
-            <h3 className="text-xl font-semibold mb-4">💳 Loans</h3>
-
-            <ul className="space-y-2 text-gray-600">
-              <li>EMI Calculator</li>
-            </ul>
-          </div>
-
-          <div className="border rounded-2xl p-6">
-            <h3 className="text-xl font-semibold mb-4">🏦 Deposits</h3>
-
-            <ul className="space-y-2 text-gray-600">
-              <li>FD Calculator</li>
-            </ul>
-          </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          {categories
+            .filter((category) => category.id !== "All")
+            .map((category) => (
+              <CategoryCard
+                key={category.id}
+                title={category.id}
+                icon={category.icon}
+                color={category.color}
+                count={
+                  calculators.filter((calc) => calc.category === category.id)
+                    .length
+                }
+              />
+            ))}
         </div>
       </section>
 
       {/* TRUST SECTION */}
-
       <section className="mb-20">
-        <h2 className="text-3xl font-bold text-center mb-10">
-          Why Use Our Calculators?
-        </h2>
+        <div className="bg-gray-50 border rounded-2xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x">
+            <div className="flex items-center justify-center gap-3 p-5">
+              <Calculator className="text-blue-600" size={22} />
+              <div>
+                <div className="font-bold text-lg">{calculators.length}+</div>
+                <p className="text-sm text-gray-600">Calculators</p>
+              </div>
+            </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="border rounded-2xl p-6 text-center">
-            <Calculator className="mx-auto mb-3 text-blue-600" size={32} />
-            <div className="text-3xl font-bold">{calculators.length}+</div>
-            <p className="text-gray-600">Calculators</p>
-          </div>
+            <div className="flex items-center justify-center gap-3 p-5">
+              <BadgeCheck className="text-blue-600" size={22} />
+              <div>
+                <div className="font-bold text-lg">100%</div>
+                <p className="text-sm text-gray-600">Free to Use</p>
+              </div>
+            </div>
 
-          <div className="border rounded-2xl p-6 text-center">
-            <BadgeCheck className="mx-auto mb-3 text-green-600" size={32} />
-            <div className="text-3xl font-bold">100%</div>
-            <p className="text-gray-600">Free</p>
-          </div>
+            <div className="flex items-center justify-center gap-3 p-5">
+              <User className="text-blue-600" size={22} />
+              <div>
+                <div className="font-bold text-lg">No Login</div>
+                <p className="text-sm text-gray-600">Required</p>
+              </div>
+            </div>
 
-          <div className="border rounded-2xl p-6 text-center">
-            <Zap className="mx-auto mb-3 text-yellow-500" size={32} />
-            <div className="text-3xl font-bold">Instant</div>
-            <p className="text-gray-600">Results</p>
-          </div>
-
-          <div className="border rounded-2xl p-6 text-center">
-            <Clock3 className="mx-auto mb-3 text-purple-600" size={32} />
-            <div className="text-3xl font-bold">24/7</div>
-            <p className="text-gray-600">Available</p>
+            <div className="flex items-center justify-center gap-3 p-5">
+              <ShieldCheck className="text-blue-600" size={22} />
+              <div>
+                <div className="font-bold text-lg">Trusted</div>
+                <p className="text-sm text-gray-600">by 100K+ Users</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

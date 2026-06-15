@@ -19,20 +19,20 @@ export default function CalculatorCard({
 }: Props) {
   return (
     <Link to={path}>
-      <div className="group bg-white border rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+      <div className="group bg-white border rounded-2xl p-5 h-60 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all">
         <div
-          className={`w-12 h-12 rounded-xl ${iconBg} flex items-center justify-center mb-4`}
+          className={`${iconBg} w-12 h-12 rounded-xl flex items-center justify-center mb-4`}
         >
-          <Icon size={24} className={iconColor} />
+          <Icon className={iconColor} size={24} />
         </div>
 
-        <h2 className="text-xl font-semibold mb-2 group-hover:text-blue-600">
-          {title}
-        </h2>
+        <h2 className="text-lg font-semibold mb-2">{title}</h2>
 
-        <p className="text-gray-600 mb-4">{description}</p>
+        <p className="text-gray-600 text-sm mb-3">{description}</p>
 
-        <span className="text-blue-600 font-medium">Open Calculator →</span>
+        <span className="text-blue-600 text-sm font-medium">
+          Open Calculator →
+        </span>
       </div>
     </Link>
   );
