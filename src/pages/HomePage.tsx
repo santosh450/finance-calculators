@@ -19,7 +19,7 @@ export default function HomePage() {
     <div>
       {/* HERO */}
 
-      <section className="text-center py-8">
+      <section className="text-center py-12 md:py-16 bg-gradient-to-b from-blue-50 to-white rounded-3xl mb-1">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
           Financial Calculators Made Easy
         </h1>
@@ -29,7 +29,7 @@ export default function HomePage() {
           investment growth with our free financial calculators.
         </p>
 
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center gap-2 md:gap-4 flex-wrap">
           <Link
             to="/calculators"
             className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
@@ -90,7 +90,7 @@ export default function HomePage() {
 
       {/* CALCULATORS */}
 
-      <section className="mb-20">
+      <section className="mb-20 bg-gray-50 py-12 px-6 rounded-3xl">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold">Popular Calculators</h2>
 
@@ -130,8 +130,8 @@ export default function HomePage() {
       </section>
 
       {/* TRUST SECTION */}
-      <section className="mb-20">
-        <div className="bg-gray-50 border rounded-2xl">
+      <section className="mb-20 bg-gray-50 py-12 px-6 rounded-3xl">
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-2xl shadow-sm">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x">
             <div className="flex items-center justify-center gap-3 p-5">
               <Calculator className="text-blue-600" size={22} />
@@ -181,7 +181,7 @@ export default function HomePage() {
           {blogs.map((blog) => (
             <div
               key={blog.slug}
-              className="border rounded-2xl p-6 hover:shadow-md transition"
+              className="bg-white border rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
             >
               <h3 className="text-xl font-semibold mb-3">{blog.title}</h3>
 
@@ -195,17 +195,17 @@ export default function HomePage() {
 
       {/* BENEFITS */}
 
-      <section className="mt-20">
+      <section className="mt-20 bg-gray-50 py-12 px-6 rounded-3xl">
         <h2 className="text-3xl font-bold mb-8">Why Choose CalcWise?</h2>
 
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="p-6 border rounded-xl">
+          <div className="p-6 bg-white border rounded-2xl shadow-sm">
             <h3 className="font-semibold text-lg mb-2">Instant Results</h3>
 
             <p className="text-gray-600">Get answers immediately.</p>
           </div>
 
-          <div className="p-6 border rounded-xl">
+          <div className="p-6 bg-white border rounded-2xl shadow-sm">
             <h3 className="font-semibold text-lg mb-2">
               Accurate Calculations
             </h3>
@@ -213,7 +213,7 @@ export default function HomePage() {
             <p className="text-gray-600">Trusted financial formulas.</p>
           </div>
 
-          <div className="p-6 border rounded-xl">
+          <div className="p-6 bg-white border rounded-2xl shadow-sm">
             <h3 className="font-semibold text-lg mb-2">Free Forever</h3>
 
             <p className="text-gray-600">No signup required.</p>
