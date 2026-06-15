@@ -15,6 +15,8 @@ export default function HomePage() {
     calculator.title.toLowerCase().includes(search.toLowerCase()),
   );
 
+  const newCalculator = calculators[calculators.length - 1];
+
   return (
     <div>
       {/* HERO */}
@@ -38,10 +40,22 @@ export default function HomePage() {
           </Link>
 
           <Link
-            to="/sip-calculator"
-            className="border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-50 transition"
+            to={newCalculator.path}
+            className="flex items-center gap-2 border border-gray-200 px-6 py-3 rounded-lg hover:bg-gray-50 transition"
           >
-            Try SIP Calculator
+            <span className="bg-green-100 text-green-600 text-xs font-semibold px-2 py-1 rounded-full">
+              TRY
+            </span>
+            {newCalculator.title} Calculator
+          </Link>
+          <Link
+            to={newCalculator.path}
+            className="flex items-center gap-2 border border-gray-200 px-6 py-3 rounded-lg hover:bg-gray-50 transition"
+          >
+            <span className="bg-red-100 text-red-600 text-xs font-semibold px-2 py-1 rounded-full">
+              NEW
+            </span>
+            {newCalculator.title} Calculator
           </Link>
         </div>
       </section>
