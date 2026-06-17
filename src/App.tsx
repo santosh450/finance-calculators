@@ -13,10 +13,12 @@ import EmiCalculatorPage from "./pages/EmiCalculatorPage";
 import CagrCalculatorPage from "./pages/CagrCalculatorPage";
 import RdCalculatorPage from "./pages/RdCalculatorPage";
 import PpfCalculatorPage from "./pages/PpfCalculatorPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
