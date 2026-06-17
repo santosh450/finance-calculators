@@ -12,6 +12,7 @@ import FdCalculatorPage from "./pages/FdCalculatorPage";
 import EmiCalculatorPage from "./pages/EmiCalculatorPage";
 import CagrCalculatorPage from "./pages/CagrCalculatorPage";
 import RdCalculatorPage from "./pages/RdCalculatorPage";
+import PpfCalculatorPage from "./pages/PpfCalculatorPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/fd-calculator" element={<FdCalculatorPage />} />
           <Route path="/emi-calculator" element={<EmiCalculatorPage />} />
           <Route path="/cagr-calculator" element={<CagrCalculatorPage />} />
+          <Route path="/ppf-calculator" element={<PpfCalculatorPage />} />
           <Route
             path="/lumpsum-calculator"
             element={<LumpsumCalculatorPage />}

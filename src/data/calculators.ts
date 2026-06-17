@@ -63,5 +63,14 @@ export const calculators: Calculator[] = [
     iconBg: "bg-yellow-100",
   iconColor: "text-yellow-600",
   category: "Deposit",
+},
+{
+  title: "PPF",
+  description: "Calculate Public Provident Fund maturity value.",
+  path: "/ppf-calculator",
+  icon: Landmark,
+  iconBg: "bg-yellow-100",
+  iconColor: "text-yellow-600",
+  category: "Deposit",
 }
 ];

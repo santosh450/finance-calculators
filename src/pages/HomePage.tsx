@@ -40,13 +40,13 @@ export default function HomePage() {
           </Link>
 
           <Link
-            to={newCalculator.path}
+            to="/sip-calculator"
             className="flex items-center gap-2 border border-gray-200 px-6 py-3 rounded-lg hover:bg-gray-50 transition"
           >
             <span className="bg-green-100 text-green-600 text-xs font-semibold px-2 py-1 rounded-full">
               TRY
             </span>
-            {newCalculator.title} Calculator
+            SIP Calculator
           </Link>
           <Link
             to={newCalculator.path}
