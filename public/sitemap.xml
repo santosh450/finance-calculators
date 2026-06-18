@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://finance-calculators-five.vercel.app/</loc>
+  </url>
+
+  <url>
+    <loc>https://finance-calculators-five.vercel.app/calculators</loc>
+  </url>
+
+  <url>
+    <loc>https://finance-calculators-five.vercel.app/blog</loc>
+  </url>
+
+  <url>
+    <loc>https://finance-calculators-five.vercel.app/about</loc>
+  </url>
+
+  <url>
+    <loc>https://finance-calculators-five.vercel.app/sip-calculator</loc>
+  </url>
+
+  <url>
+    <loc>https://finance-calculators-five.vercel.app/lumpsum-calculator</loc>
+  </url>
+
+  <url>
+    <loc>https://finance-calculators-five.vercel.app/fd-calculator</loc>
+  </url>
+
+  <url>
+    <loc>https://finance-calculators-five.vercel.app/rd-calculator</loc>
+  </url>
+
+  <url>
+    <loc>https://finance-calculators-five.vercel.app/emi-calculator</loc>
+  </url>
+
+  <url>
+    <loc>https://finance-calculators-five.vercel.app/cagr-calculator</loc>
+  </url>
+
+  <url>
+    <loc>https://finance-calculators-five.vercel.app/ppf-calculator</loc>
+  </url>
+
+</urlset>
