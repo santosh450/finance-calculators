@@ -89,11 +89,13 @@ export default function PpfCalculatorPage() {
               <ResultCard
                 label="Interest Earned"
                 value={formatCurrency(result.interestEarned)}
+                valueClassName="text-green-600"
               />
 
               <ResultCard
                 label="Maturity Value"
                 value={formatCurrency(result.maturityValue)}
+                valueClassName="text-blue-600 text-3xl"
               />
               <button
                 onClick={() => {
