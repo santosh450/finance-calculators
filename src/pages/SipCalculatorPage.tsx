@@ -40,7 +40,36 @@ export default function SipCalculatorPage() {
 
         <meta
           name="description"
-          content="Free SIP Calculator. Calculate your mutual fund SIP returns and future wealth instantly."
+          content="Free SIP Calculator. Calculate SIP returns and future wealth instantly."
+        />
+
+        {/* Canonical URL */}
+        <link
+          rel="canonical"
+          href="https://finance-calculators-five.vercel.app/sip-calculator"
+        />
+
+        {/* Open Graph */}
+        <meta
+          property="og:title"
+          content="SIP Calculator - Calculate SIP Returns Online"
+        />
+
+        <meta
+          property="og:description"
+          content="Free SIP Calculator. Calculate SIP returns and future wealth instantly."
+        />
+
+        <meta
+          property="og:url"
+          content="https://finance-calculators-five.vercel.app/sip-calculator"
+        />
+
+        <meta property="og:type" content="website" />
+
+        <meta
+          property="og:image"
+          content="https://finance-calculators-five.vercel.app/og-image.png"
         />
       </Helmet>
       <CalculatorLayout title="SIP Calculator">
