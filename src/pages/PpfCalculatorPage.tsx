@@ -1,20 +1,16 @@
-import { useState } from "react";
-import CalculatorLayout from "../components/CalculatorLayout";
+import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { useSearchParams } from "react-router-dom";
+import { calculatePpf } from "../calculators/ppf";
 import CalculatorInput from "../components/CalculatorInput";
-import ResultCard from "../components/ResultCard";
+import CalculatorLayout from "../components/CalculatorLayout";
+import CalculatorResults from "../components/CalculatorResults";
 import ExplanationSection from "../components/ExplanationSection";
 import FaqSection from "../components/FaqSection";
-import { calculatePpf } from "../calculators/ppf";
-import { Helmet } from "react-helmet-async";
-import BreakdownPieChart from "../components/BreakdownPieChart";
 import { formatCurrency } from "../utils/formatCurrency";
-import { useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
-import CalculatorResults from "../components/CalculatorResults";
 
 export default function PpfCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [copied, setCopied] = useState(false);
 
   const [yearlyInvestment, setYearlyInvestment] = useState(
     Number(searchParams.get("yearlyInvestment")) || 150000,
