@@ -1,19 +1,16 @@
-import { useState } from "react";
-import BreakdownPieChart from "../components/BreakdownPieChart";
-import { formatCurrency } from "../utils/formatCurrency";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
 import { calculateEmi } from "../calculators/emi";
-import ResultCard from "../components/ResultCard";
 import CalculatorInput from "../components/CalculatorInput";
 import CalculatorLayout from "../components/CalculatorLayout";
-import FaqSection from "../components/FaqSection";
+import CalculatorResults from "../components/CalculatorResults";
 import ExplanationSection from "../components/ExplanationSection";
+import FaqSection from "../components/FaqSection";
+import { formatCurrency } from "../utils/formatCurrency";
 
 export default function EmiCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [copied, setCopied] = useState(false);
 
   const [loanAmount, setLoanAmount] = useState(
     Number(searchParams.get("loanAmount")) || 1000000,
@@ -48,7 +45,7 @@ export default function EmiCalculatorPage() {
           {/* Input Card */}
 
           <div className="border rounded-xl p-6 shadow-sm">
-            <h2 className="text-2xl font-semibold mb-6">Investment Details</h2>
+            <h2 className="text-2xl font-semibold mb-6">Loan Details</h2>
 
             <CalculatorInput
               label="Loan Amount"
@@ -83,50 +80,36 @@ export default function EmiCalculatorPage() {
 
           {/* Results Card */}
 
-          <div className="border rounded-xl p-6 shadow-sm">
-            <h2 className="text-2xl font-semibold mb-6">Results</h2>
-
-            <div className="space-y-4">
-              <ResultCard
-                label="Monthly EMI"
-                value={formatCurrency(result.emi)}
-                valueClassName="text-blue-600"
-              />
-
-              <ResultCard
-                label="Total Interest"
-                value={formatCurrency(result.totalInterest)}
-                valueClassName="text-green-600"
-              />
-
-              <ResultCard
-                label="Total Payment"
-                value={formatCurrency(result.totalPayment)}
-              />
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-
-                  setCopied(true);
-
-                  setTimeout(() => {
-                    setCopied(false);
-                  }, 2000);
-                }}
-                className="mt-6 bg-blue-600 text-white px-4 py-2 rounded-lg"
-              >
-                {copied ? "Copied!" : "Copy Share Link"}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-12 border rounded-xl p-6 shadow-sm">
-          <h2 className="text-2xl font-semibold mb-6">Investment Breakdown</h2>
-
-          <BreakdownPieChart
-            investedAmount={loanAmount}
-            estimatedReturns={result.totalInterest}
+          <CalculatorResults
+            results={[
+              {
+                label: "Total Interest",
+                value: formatCurrency(result.totalInterest),
+              },
+              {
+                label: "Total Payment",
+                value: formatCurrency(result.totalPayment),
+                valueClassName: "text-green-600",
+              },
+              {
+                label: "Monthly EMI",
+                value: formatCurrency(result.emi),
+                valueClassName: "text-blue-600 text-3xl",
+              },
+            ]}
+            breakdownItems={[
+              { label: "Principal", value: loanAmount, color: "bg-black" },
+              {
+                label: "Interest",
+                value: result.totalInterest,
+                color: "bg-green-600",
+              },
+              {
+                label: "Total Payment",
+                value: result.totalPayment,
+                color: "bg-blue-600",
+              },
+            ]}
           />
         </div>
 

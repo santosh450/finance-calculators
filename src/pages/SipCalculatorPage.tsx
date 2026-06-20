@@ -1,21 +1,16 @@
-import { useState } from "react";
-import { calculateSip } from "../calculators/sip";
-import BreakdownPieChart from "../components/BreakdownPieChart";
-import { formatCurrency } from "../utils/formatCurrency";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
-import ResultCard from "../components/ResultCard";
+import { calculateSip } from "../calculators/sip";
 import CalculatorInput from "../components/CalculatorInput";
 import CalculatorLayout from "../components/CalculatorLayout";
-import FaqSection from "../components/FaqSection";
-import ExplanationSection from "../components/ExplanationSection";
-import BreakdownBar from "../components/BreakdownBar";
 import CalculatorResults from "../components/CalculatorResults";
+import ExplanationSection from "../components/ExplanationSection";
+import FaqSection from "../components/FaqSection";
+import { formatCurrency } from "../utils/formatCurrency";
 
 export default function SipCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [copied, setCopied] = useState(false);
 
   const [amount, setAmount] = useState(
     Number(searchParams.get("amount")) || 10000,

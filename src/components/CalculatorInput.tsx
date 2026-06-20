@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 interface CalculatorInputProps {
   label: string;
   value: number;
@@ -19,6 +21,12 @@ export default function CalculatorInput({
   prefix = "",
   suffix = "",
 }: CalculatorInputProps) {
+  const [inputValue, setInputValue] = useState(value.toString());
+
+  useEffect(() => {
+    setInputValue(value.toString());
+  }, [value]);
+
   return (
     <div className="mb-6">
       <label className="block mb-2 font-medium">{label}</label>
@@ -32,8 +40,22 @@ export default function CalculatorInput({
 
         <input
           type="number"
-          value={value}
-          onChange={(e) => onChange(Number(e.target.value))}
+          value={inputValue}
+          onChange={(e) => {
+            const val = e.target.value;
+
+            setInputValue(val);
+
+            if (val !== "") {
+              onChange(Number(val));
+            }
+          }}
+          onBlur={() => {
+            if (inputValue === "") {
+              setInputValue("0");
+              onChange(0);
+            }
+          }}
           className="w-32 border rounded-lg px-3 py-2"
         />
       </div>

@@ -1,20 +1,16 @@
-import { useState } from "react";
-import { calculateLumpsum } from "../calculators/lumpsum";
-import BreakdownPieChart from "../components/BreakdownPieChart";
-import { formatCurrency } from "../utils/formatCurrency";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
-import ResultCard from "../components/ResultCard";
+import { calculateLumpsum } from "../calculators/lumpsum";
 import CalculatorInput from "../components/CalculatorInput";
 import CalculatorLayout from "../components/CalculatorLayout";
-import FaqSection from "../components/FaqSection";
-import ExplanationSection from "../components/ExplanationSection";
 import CalculatorResults from "../components/CalculatorResults";
+import ExplanationSection from "../components/ExplanationSection";
+import FaqSection from "../components/FaqSection";
+import { formatCurrency } from "../utils/formatCurrency";
 
 export default function LumpsumCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [copied, setCopied] = useState(false);
 
   const [principal, setPrincipal] = useState(
     Number(searchParams.get("principal")) || 100000,
