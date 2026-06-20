@@ -133,12 +133,12 @@ export default function SipCalculatorPage() {
               {
                 label: "Total Withdrawals",
                 value: formatCurrency(result.totalWithdrawals),
-                valueClassName: "text-green-600",
+                valueClassName: "text-red-400",
               },
               {
                 label: "Total Growth",
                 value: formatCurrency(result.totalGrowth),
-                valueClassName: "text-red-400",
+                valueClassName: "text-green-600",
               },
               {
                 label: "Remaining Corpus",
@@ -155,12 +155,12 @@ export default function SipCalculatorPage() {
               {
                 label: "Total Withdrawals",
                 value: result.totalWithdrawals,
-                color: "bg-green-600",
+                color: "bg-red-400",
               },
               {
                 label: "Total Growth",
                 value: result.totalGrowth,
-                color: "bg-red-400",
+                color: "bg-green-600",
               },
               {
                 label: "Remaining Corpus",
