@@ -8,6 +8,8 @@ import CalculatorInput from "../components/CalculatorInput";
 import CalculatorLayout from "../components/CalculatorLayout";
 import FaqSection from "../components/FaqSection";
 import ExplanationSection from "../components/ExplanationSection";
+import CalculatorResults from "../components/CalculatorResults";
+import { formatCurrency } from "../utils/formatCurrency";
 
 export default function CagrCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,7 +20,7 @@ export default function CagrCalculatorPage() {
   );
 
   const [finalValue, setFinalValue] = useState(
-    Number(searchParams.get("finalValue")) || 12,
+    Number(searchParams.get("finalValue")) || 310584.82,
   );
 
   const [years, setYears] = useState(Number(searchParams.get("years")) || 10);
@@ -33,17 +35,19 @@ export default function CagrCalculatorPage() {
 
   const cagr = calculateCagr(initialValue, finalValue, years);
 
+  const resultColorClass = cagr >= 0 ? "text-green-600" : "text-red-600";
+
   return (
     <>
       <Helmet>
-        <title>Lumpsum Calculator - Calculate Future Value</title>
+        <title>CAGR Calculator - Calculate Compound Annual Growth Rate</title>
 
         <meta
           name="description"
-          content="Free Lumpsum Calculator. Calculate the future value of your one-time investment instantly."
+          content="Free CAGR Calculator. Calculate the compound annual growth rate of your investment instantly."
         />
       </Helmet>
-      <CalculatorLayout title="Lumpsum Calculator">
+      <CalculatorLayout title="CAGR Calculator">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Input Card */}
 
@@ -83,41 +87,36 @@ export default function CagrCalculatorPage() {
 
           {/* Results Card */}
 
-          <div className="border rounded-xl p-6 shadow-sm">
-            <h2 className="text-2xl font-semibold mb-6">Results</h2>
-
-            <div className="space-y-4">
-              <ResultCard
-                label="CAGR"
-                value={`${cagr.toFixed(2)}%`}
-                valueClassName="text-blue-600 text-3xl"
-              />
-
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-
-                  setCopied(true);
-
-                  setTimeout(() => {
-                    setCopied(false);
-                  }, 2000);
-                }}
-                className="mt-6 bg-blue-600 text-white px-4 py-2 rounded-lg"
-              >
-                {copied ? "Copied!" : "Copy Share Link"}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-12 border rounded-xl p-6 shadow-sm">
-          <h2 className="text-2xl font-semibold mb-6">Investment Breakdown</h2>
-
-          {/* <BreakdownPieChart
-            investedAmount={result.investedAmount}
-            estimatedReturns={result.estimatedReturns}
-          /> */}
+          <CalculatorResults
+            results={[
+              {
+                label: "Initial Investment",
+                value: formatCurrency(initialValue),
+              },
+              {
+                label: "Final Value",
+                value: formatCurrency(finalValue),
+                valueClassName: "text-blue-600",
+              },
+              {
+                label: "CAGR",
+                value: `${cagr.toFixed(2)}%`,
+                valueClassName: `${resultColorClass} text-3xl`,
+              },
+            ]}
+            breakdownItems={[
+              {
+                label: "Initial Investment",
+                value: initialValue,
+                color: "bg-black",
+              },
+              {
+                label: "Final Value",
+                value: finalValue,
+                color: "bg-blue-600",
+              },
+            ]}
+          />
         </div>
 
         <ExplanationSection

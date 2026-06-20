@@ -9,7 +9,7 @@ type BreakdownBarProps = {
 };
 
 export default function BreakdownBar({ items }: BreakdownBarProps) {
-  //want to get max from items array and use it to calculate percentage of each item
+  // Get max from items array and use it to calculate percentage of each item
   const maxValue = Math.max(...items.map((item) => item.value));
 
   return (

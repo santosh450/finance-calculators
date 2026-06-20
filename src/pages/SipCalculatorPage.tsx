@@ -11,6 +11,7 @@ import CalculatorLayout from "../components/CalculatorLayout";
 import FaqSection from "../components/FaqSection";
 import ExplanationSection from "../components/ExplanationSection";
 import BreakdownBar from "../components/BreakdownBar";
+import CalculatorResults from "../components/CalculatorResults";
 
 export default function SipCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -113,65 +114,41 @@ export default function SipCalculatorPage() {
 
           {/* Results Card */}
 
-          <div className="border rounded-xl p-6 shadow-sm">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-semibold">Results</h2>
-
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-
-                  setCopied(true);
-
-                  setTimeout(() => {
-                    setCopied(false);
-                  }, 2000);
-                }}
-                className="mt-6 bg-blue-600 text-white px-4 py-2 rounded-lg"
-              >
-                {copied ? "Copied!" : "Copy Share Link"}
-              </button>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <ResultCard
-                  label="Invested Amount"
-                  value={formatCurrency(result.investedAmount)}
-                />
-
-                <ResultCard
-                  label="Estimated Returns"
-                  value={formatCurrency(result.estimatedReturns)}
-                  valueClassName="text-green-600"
-                />
-              </div>
-
-              <ResultCard
-                label="Maturity Value"
-                value={formatCurrency(result.maturityValue)}
-                valueClassName="text-blue-600 text-3xl"
-              />
-            </div>
-            <BreakdownBar
-              items={[
-                {
-                  label: "Invested Amount",
-                  value: result.investedAmount,
-                  color: "bg-black",
-                },
-                {
-                  label: "Estimated Returns",
-                  value: result.estimatedReturns,
-                  color: "bg-green-600",
-                },
-                {
-                  label: "Maturity Value",
-                  value: result.maturityValue,
-                  color: "bg-blue-600",
-                },
-              ]}
-            />
-          </div>
+          <CalculatorResults
+            results={[
+              {
+                label: "Invested Amount",
+                value: formatCurrency(result.investedAmount),
+              },
+              {
+                label: "Estimated Returns",
+                value: formatCurrency(result.estimatedReturns),
+                valueClassName: "text-green-600",
+              },
+              {
+                label: "Maturity Value",
+                value: formatCurrency(result.maturityValue),
+                valueClassName: "text-blue-600 text-3xl",
+              },
+            ]}
+            breakdownItems={[
+              {
+                label: "Invested Amount",
+                value: result.investedAmount,
+                color: "bg-black",
+              },
+              {
+                label: "Estimated Returns",
+                value: result.estimatedReturns,
+                color: "bg-green-600",
+              },
+              {
+                label: "Maturity Value",
+                value: result.maturityValue,
+                color: "bg-blue-600",
+              },
+            ]}
+          />
         </div>
 
         <ExplanationSection
