@@ -16,6 +16,7 @@ import PpfCalculatorPage from "./pages/PpfCalculatorPage";
 import ScrollToTop from "./components/ScrollToTop";
 import StepUpSipCalculatorPage from "./pages/SipStepUpCalculatorPage";
 import SipLumpSumCalculatorPage from "./pages/SipLumpSumCalculatorPage";
+import SwpCalculatorPage from "./pages/SwpCalculatorPage";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             path="/sip-lumpsum-calculator"
             element={<SipLumpSumCalculatorPage />}
           />
+          <Route path="/swp-calculator" element={<SwpCalculatorPage />} />
         </Routes>
       </Layout>
     </BrowserRouter>

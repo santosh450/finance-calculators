@@ -90,5 +90,14 @@ export const calculators: Calculator[] = [
   iconBg: "bg-blue-100",
   iconColor: "text-blue-600",
   category: "Investment",
+},
+{
+  title: "SWP",
+  description: "Calculate Systematic Withdrawal Plan returns.",
+  path: "/swp-calculator",
+  icon: TrendingUp,
+  iconBg: "bg-blue-100",
+  iconColor: "text-blue-600",
+  category: "Investment",
 }
 ];
