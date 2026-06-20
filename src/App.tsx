@@ -14,6 +14,8 @@ import CagrCalculatorPage from "./pages/CagrCalculatorPage";
 import RdCalculatorPage from "./pages/RdCalculatorPage";
 import PpfCalculatorPage from "./pages/PpfCalculatorPage";
 import ScrollToTop from "./components/ScrollToTop";
+import StepUpSipCalculatorPage from "./pages/SipStepUpCalculatorPage";
+import SipLumpSumCalculatorPage from "./pages/SipLumpSumCalculatorPage";
 
 function App() {
   return (
@@ -35,6 +37,14 @@ function App() {
             element={<LumpsumCalculatorPage />}
           />
           <Route path="/rd-calculator" element={<RdCalculatorPage />} />
+          <Route
+            path="/step-up-sip-calculator"
+            element={<StepUpSipCalculatorPage />}
+          />
+          <Route
+            path="/sip-lumpsum-calculator"
+            element={<SipLumpSumCalculatorPage />}
+          />
         </Routes>
       </Layout>
     </BrowserRouter>

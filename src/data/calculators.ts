@@ -72,5 +72,23 @@ export const calculators: Calculator[] = [
   iconBg: "bg-yellow-100",
   iconColor: "text-yellow-600",
   category: "Deposit",
+},
+{
+  title: "Step-Up SIP",
+  description: "Calculate returns for SIP with annual increase.",
+  path: "/step-up-sip-calculator",
+  icon: TrendingUp,
+  iconBg: "bg-blue-100",
+  iconColor: "text-blue-600",
+  category: "Investment",
+},
+{
+  title: "SIP + Lumpsum",
+  description: "Calculate returns for combined SIP and lumpsum investments.",
+  path: "/sip-lumpsum-calculator",
+  icon: TrendingUp,
+  iconBg: "bg-blue-100",
+  iconColor: "text-blue-600",
+  category: "Investment",
 }
 ];
