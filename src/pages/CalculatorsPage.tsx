@@ -4,7 +4,7 @@ import {
   categories,
   type CalculatorCategory as CalculatorCategoryType,
 } from "../constants/categories";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const ALL_CATEGORY = categories[0].id;
 
@@ -51,12 +51,45 @@ export default function CalculatorsPage() {
         ))}
       </div>
 
-      {/* <div className="grid md:grid-cols-2 gap-6"> */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-        {filteredCalculators.map((calculator) => (
-          <CalculatorCard key={calculator.path} {...calculator} />
-        ))}
-      </div>
+      {selectedCategory === ALL_CATEGORY ? (
+        <div className="space-y-8">
+          {categories
+            .filter((category) => category.id !== ALL_CATEGORY)
+            .map((category) => {
+              const categoryCalculators = calculators.filter(
+                (calc) => calc.category === category.id,
+              );
+
+              if (categoryCalculators.length === 0) return null;
+
+              return (
+                <div key={category.id}>
+                  <h2 className="text-2xl font-semibold mb-4">
+                    {category.icon} {category.id}
+                  </h2>
+
+                  <div className="flex flex-wrap gap-x-8 gap-y-3">
+                    {categoryCalculators.map((calculator) => (
+                      <Link
+                        key={calculator.path}
+                        to={calculator.path}
+                        className="text-blue-600 hover:underline"
+                      >
+                        {calculator.title}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      ) : (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {filteredCalculators.map((calculator) => (
+            <CalculatorCard key={calculator.path} {...calculator} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
