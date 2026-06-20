@@ -10,6 +10,7 @@ import BreakdownPieChart from "../components/BreakdownPieChart";
 import { formatCurrency } from "../utils/formatCurrency";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
+import CalculatorResults from "../components/CalculatorResults";
 
 export default function PpfCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -77,49 +78,40 @@ export default function PpfCalculatorPage() {
           </div>
 
           {/* RESULTS */}
-          <div className="border rounded-xl p-6 shadow-sm">
-            <h2 className="text-2xl font-semibold mb-6">Results</h2>
-
-            <div className="space-y-4">
-              <ResultCard
-                label="Total Investment"
-                value={formatCurrency(result.totalInvestment)}
-              />
-
-              <ResultCard
-                label="Interest Earned"
-                value={formatCurrency(result.interestEarned)}
-                valueClassName="text-green-600"
-              />
-
-              <ResultCard
-                label="Maturity Value"
-                value={formatCurrency(result.maturityValue)}
-                valueClassName="text-blue-600 text-3xl"
-              />
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-
-                  setCopied(true);
-
-                  setTimeout(() => {
-                    setCopied(false);
-                  }, 2000);
-                }}
-                className="mt-6 bg-blue-600 text-white px-4 py-2 rounded-lg"
-              >
-                {copied ? "Copied!" : "Copy Share Link"}
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="mt-12 border rounded-xl p-6 shadow-sm">
-          <h2 className="text-2xl font-semibold mb-6">Investment Breakdown</h2>
-
-          <BreakdownPieChart
-            investedAmount={result.totalInvestment}
-            estimatedReturns={result.interestEarned}
+          <CalculatorResults
+            results={[
+              {
+                label: "Total Investment",
+                value: formatCurrency(result.totalInvestment),
+              },
+              {
+                label: "Total Interest",
+                value: formatCurrency(result.interestEarned),
+                valueClassName: "text-green-600",
+              },
+              {
+                label: "Maturity Amount",
+                value: formatCurrency(result.maturityValue),
+                valueClassName: "text-blue-600 text-3xl",
+              },
+            ]}
+            breakdownItems={[
+              {
+                label: "Deposits",
+                value: result.totalInvestment,
+                color: "bg-black",
+              },
+              {
+                label: "Interest",
+                value: result.interestEarned,
+                color: "bg-green-600",
+              },
+              {
+                label: "Maturity Amount",
+                value: result.maturityValue,
+                color: "bg-blue-600",
+              },
+            ]}
           />
         </div>
 

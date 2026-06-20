@@ -98,16 +98,16 @@ export default function EmiCalculatorPage() {
               },
             ]}
             breakdownItems={[
-              { label: "Principal", value: loanAmount, color: "bg-black" },
+              { label: "Principal", value: loanAmount, color: "bg-red-300" },
               {
                 label: "Interest",
                 value: result.totalInterest,
-                color: "bg-green-600",
+                color: "bg-black",
               },
               {
                 label: "Total Payment",
                 value: result.totalPayment,
-                color: "bg-blue-600",
+                color: "bg-green-600",
               },
             ]}
           />

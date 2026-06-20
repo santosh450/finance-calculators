@@ -1,27 +1,24 @@
-import { useState } from "react";
-import BreakdownPieChart from "../components/BreakdownPieChart";
-import { formatCurrency } from "../utils/formatCurrency";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
-import ResultCard from "../components/ResultCard";
+import { calculateRd } from "../calculators/rd";
 import CalculatorInput from "../components/CalculatorInput";
 import CalculatorLayout from "../components/CalculatorLayout";
-import FaqSection from "../components/FaqSection";
+import CalculatorResults from "../components/CalculatorResults";
 import ExplanationSection from "../components/ExplanationSection";
-import { calculateRd } from "../calculators/rd";
+import FaqSection from "../components/FaqSection";
+import { formatCurrency } from "../utils/formatCurrency";
 
 export default function RdCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [copied, setCopied] = useState(false);
 
   const [monthlyDeposit, setMonthlyDeposit] = useState(
     Number(searchParams.get("monthlyDeposit")) || 10000,
   );
 
-  const [rate, setRate] = useState(Number(searchParams.get("rate")) || 12);
+  const [rate, setRate] = useState(Number(searchParams.get("rate")) || 7);
 
-  const [years, setYears] = useState(Number(searchParams.get("years")) || 10);
+  const [years, setYears] = useState(Number(searchParams.get("years")) || 3);
 
   useEffect(() => {
     setSearchParams({
@@ -83,49 +80,40 @@ export default function RdCalculatorPage() {
 
           {/* Results Card */}
 
-          <div className="border rounded-xl p-6 shadow-sm">
-            <h2 className="text-2xl font-semibold mb-6">Results</h2>
-
-            <div className="space-y-4">
-              <ResultCard
-                label="Invested Amount"
-                value={formatCurrency(result.investedAmount)}
-              />
-
-              <ResultCard
-                label="Interest Earned"
-                value={formatCurrency(result.interestEarned)}
-              />
-
-              <ResultCard
-                label="Maturity Amount"
-                value={formatCurrency(result.maturityAmount)}
-                valueClassName="text-green-600"
-              />
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-
-                  setCopied(true);
-
-                  setTimeout(() => {
-                    setCopied(false);
-                  }, 2000);
-                }}
-                className="mt-6 bg-blue-600 text-white px-4 py-2 rounded-lg"
-              >
-                {copied ? "Copied!" : "Copy Share Link"}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-12 border rounded-xl p-6 shadow-sm">
-          <h2 className="text-2xl font-semibold mb-6">Investment Breakdown</h2>
-
-          <BreakdownPieChart
-            investedAmount={result.investedAmount}
-            estimatedReturns={result.interestEarned}
+          <CalculatorResults
+            results={[
+              {
+                label: "Total Deposits",
+                value: formatCurrency(result.investedAmount),
+              },
+              {
+                label: "Interest Earned",
+                value: formatCurrency(result.interestEarned),
+                valueClassName: "text-green-600",
+              },
+              {
+                label: "Maturity Amount",
+                value: formatCurrency(result.maturityAmount),
+                valueClassName: "text-blue-600 text-3xl",
+              },
+            ]}
+            breakdownItems={[
+              {
+                label: "Deposits",
+                value: result.investedAmount,
+                color: "bg-black",
+              },
+              {
+                label: "Interest",
+                value: result.interestEarned,
+                color: "bg-green-600",
+              },
+              {
+                label: "Maturity Amount",
+                value: result.maturityAmount,
+                color: "bg-blue-600",
+              },
+            ]}
           />
         </div>
 

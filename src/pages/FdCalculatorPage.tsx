@@ -1,29 +1,26 @@
-import { useState } from "react";
-import { calculateFd } from "../calculators/fd";
-import BreakdownPieChart from "../components/BreakdownPieChart";
-import { formatCurrency } from "../utils/formatCurrency";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
-import ResultCard from "../components/ResultCard";
+import { calculateFd } from "../calculators/fd";
 import CalculatorInput from "../components/CalculatorInput";
 import CalculatorLayout from "../components/CalculatorLayout";
-import FaqSection from "../components/FaqSection";
 import ExplanationSection from "../components/ExplanationSection";
+import FaqSection from "../components/FaqSection";
+import { formatCurrency } from "../utils/formatCurrency";
+import CalculatorResults from "../components/CalculatorResults";
 
 export default function FdCalculatorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [copied, setCopied] = useState(false);
 
   const [depositAmount, setDepositAmount] = useState(
     Number(searchParams.get("principal")) || 100000,
   );
 
   const [interestRate, setInterestRate] = useState(
-    Number(searchParams.get("rate")) || 12,
+    Number(searchParams.get("rate")) || 7,
   );
 
-  const [tenure, setTenure] = useState(Number(searchParams.get("years")) || 10);
+  const [tenure, setTenure] = useState(Number(searchParams.get("years")) || 3);
 
   useEffect(() => {
     setSearchParams({
@@ -53,7 +50,7 @@ export default function FdCalculatorPage() {
             <h2 className="text-2xl font-semibold mb-6">Investment Details</h2>
 
             <CalculatorInput
-              label="Monthly Investment"
+              label="Deposit Amount"
               value={depositAmount}
               onChange={setDepositAmount}
               min={1000}
@@ -85,51 +82,36 @@ export default function FdCalculatorPage() {
 
           {/* Results Card */}
 
-          <div className="border rounded-xl p-6 shadow-sm">
-            <h2 className="text-2xl font-semibold mb-6">Results</h2>
-
-            <div className="space-y-4">
-              <ResultCard
-                label="Deposit Amount"
-                value={formatCurrency(result.investedAmount)}
-              />
-
-              <ResultCard
-                label="Interest Earned"
-                value={formatCurrency(result.interestEarned)}
-                valueClassName="text-green-600"
-              />
-
-              <ResultCard
-                label="Maturity Amount"
-                value={formatCurrency(result.maturityValue)}
-                valueClassName="text-blue-600 text-3xl"
-              />
-
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-
-                  setCopied(true);
-
-                  setTimeout(() => {
-                    setCopied(false);
-                  }, 2000);
-                }}
-                className="mt-6 bg-blue-600 text-white px-4 py-2 rounded-lg"
-              >
-                {copied ? "Copied!" : "Copy Share Link"}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-12 border rounded-xl p-6 shadow-sm">
-          <h2 className="text-2xl font-semibold mb-6">Investment Breakdown</h2>
-
-          <BreakdownPieChart
-            investedAmount={result.investedAmount}
-            estimatedReturns={result.interestEarned}
+          <CalculatorResults
+            results={[
+              {
+                label: "Deposit  Amount",
+                value: formatCurrency(result.investedAmount),
+              },
+              {
+                label: "Interest Earned",
+                value: formatCurrency(result.interestEarned),
+                valueClassName: "text-green-600",
+              },
+              {
+                label: "Maturity Amount",
+                value: formatCurrency(result.maturityValue),
+                valueClassName: "text-blue-600 text-3xl",
+              },
+            ]}
+            breakdownItems={[
+              { label: "Deposit", value: depositAmount, color: "bg-black" },
+              {
+                label: "Interest",
+                value: result.interestEarned,
+                color: "bg-green-600",
+              },
+              {
+                label: "Maturity Amount",
+                value: result.maturityValue,
+                color: "bg-blue-600",
+              },
+            ]}
           />
         </div>
 
